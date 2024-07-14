@@ -80,7 +80,7 @@
                                             name="email" 
                                             rules="required|email"
                                             v-model="form.email"
-                                            value="admin@example.com"
+                                            value=""
                                             :label="trans('otp-login::app.admin.users.sessions.email')"
                                             :placeholder="trans('otp-login::app.admin.users.sessions.email')"
                                         />
