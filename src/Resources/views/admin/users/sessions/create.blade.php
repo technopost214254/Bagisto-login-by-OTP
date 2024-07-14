@@ -1,7 +1,7 @@
 <x-admin::layouts.anonymous>
     <!-- Page Title -->
     <x-slot:title>
-        @lang('opt-login::app.users.sessions.title')
+        @lang('otp-login::app.admin.users.sessions.title')
     </x-slot>
 
     @pushOnce('styles')
@@ -56,7 +56,6 @@
                         <x-admin::form
                             v-slot="{ meta, errors, handleSubmit }"
                             as="div"
-                            ref="modelForm"
                         >
                             <form
                                 @submit.prevent="handleSubmit($event, submitOtp)"
@@ -64,14 +63,14 @@
                                 ref="submitOtp"
                                 >
                                 <p class="p-4 text-xl font-bold text-gray-800 dark:text-white">
-                                    @lang('opt-login::app.users.sessions.title')
+                                    @lang('otp-login::app.admin.users.sessions.title')
                                 </p>
 
                                 <div class="border-y p-4 dark:border-gray-800">
                                     <!-- Email -->
                                     <x-admin::form.control-group>
                                         <x-admin::form.control-group.label class="required">
-                                            @lang('opt-login::app.users.sessions.email')
+                                            @lang('otp-login::app.admin.users.sessions.email')
                                         </x-admin::form.control-group.label>
 
                                         <x-admin::form.control-group.control 
@@ -82,8 +81,8 @@
                                             rules="required|email"
                                             v-model="form.email"
                                             value="admin@example.com"
-                                            :label="trans('opt-login::app.users.sessions.email')"
-                                            :placeholder="trans('opt-login::app.users.sessions.email')"
+                                            :label="trans('otp-login::app.admin.users.sessions.email')"
+                                            :placeholder="trans('otp-login::app.admin.users.sessions.email')"
                                         />
                                         
                                         <x-admin::form.control-group.error control-name="email" />
@@ -95,7 +94,7 @@
                                         class="relative w-full"
                                         >
                                         <x-admin::form.control-group.label class="required">
-                                            @lang('opt-login::app.users.sessions.otp')
+                                            @lang('otp-login::app.admin.users.sessions.otp')
                                         </x-admin::form.control-group.label>
                                 
                                         <x-admin::form.control-group.control 
@@ -105,8 +104,8 @@
                                             v-model="form.otp"
                                             rules="required|min:6" 
                                             class="w-[254px] max-w-full ltr:pr-10 rtl:pl-10" 
-                                            :label="trans('opt-login::app.users.sessions.otp')"
-                                            :placeholder="trans('opt-login::app.users.sessions.otp')"
+                                            :label="trans('otp-login::app.admin.users.sessions.otp')"
+                                            :placeholder="trans('otp-login::app.admin.users.sessions.otp')"
                                         />
                                 
                                         <x-admin::form.control-group.error control-name="password" />
@@ -119,22 +118,22 @@
                                         v-if="requestForOtp"
                                         type="button"
                                         class="flex cursor-pointer justify-center rounded-md border border-blue-700 bg-blue-600 px-3.5 py-1.5 text-right font-semibold text-gray-50"
-                                        :title="trans('opt-login::app.users.sessions.login')"
+                                        :title="trans('otp-login::app.admin.users.sessions.login')"
                                         ::loading="isLoading"
                                         ::disabled="isLoading"
                                         @click="customerLogin"
                                     >
-                                        @lang('opt-login::app.users.sessions.login')
+                                        @lang('otp-login::app.admin.users.sessions.login')
                                     </x-admin::button>
 
                                     <x-admin::button
                                         v-else
                                         class="flex cursor-pointer justify-center rounded-md border border-blue-700 bg-blue-600 px-3.5 py-1.5 text-right font-semibold text-gray-50"
-                                        :title="trans('opt-login::app.users.sessions.send-otp')"
+                                        :title="trans('otp-login::app.admin.users.sessions.send-otp')"
                                         ::loading="isLoading"
                                         ::disabled="isLoading"
                                     >
-                                        @lang('opt-login::app.users.sessions.send-otp')
+                                        @lang('otp-login::app.admin.users.sessions.send-otp')
                                     </x-admin::button>
 
                                      <!-- Re Send OTP -->
@@ -144,7 +143,7 @@
                                         class="cursor-pointer text-xs font-semibold leading-6 text-blue-600"
                                         @click="submitOtp"
                                     >
-                                        @lang('opt-login::app.users.sessions.re-send-otp')
+                                        @lang('otp-login::app.admin.users.sessions.re-send-otp')
                                     </button>
                                 </div>
                             </form>

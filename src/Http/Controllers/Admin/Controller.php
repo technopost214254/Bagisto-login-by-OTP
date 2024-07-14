@@ -1,6 +1,6 @@
 <?php
 
-namespace Webkul\EmailOtpLogin\Http\Controllers;
+namespace Webkul\EmailOtpLogin\Http\Controllers\Admin;
 
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;

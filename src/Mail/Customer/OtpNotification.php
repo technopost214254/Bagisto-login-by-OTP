@@ -1,21 +1,22 @@
 <?php
 
-namespace Webkul\EmailOtpLogin\Mail;
+namespace Webkul\EmailOtpLogin\Mail\Customer;
 
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Webkul\Admin\Mail\Mailable;
-use Webkul\User\Contracts\Admin;
+use Webkul\Customer\Contracts\Customer;
 
-class OTPNotification extends Mailable
+class OtpNotification extends Mailable
 {
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(public Admin $admin) {}
+    public function __construct(public Customer $customer) {
+    }
 
     /**
      * Get the message envelope.
@@ -25,11 +26,11 @@ class OTPNotification extends Mailable
         return new Envelope(
             to: [
                 new Address(
-                    $this->admin->email,
-                    $this->admin->name
+                    $this->customer->email,
+                    $this->customer->name,
                 ),
             ],
-            subject: 'OTP Share',
+            subject: trans('otp-login::app.customers.emails.login.subject'),
         );
     }
 
@@ -39,9 +40,9 @@ class OTPNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'opt-login::emails.login.index',
+            view: 'otp-login::customers.emails.login.index',
             with: [
-                'admin' => $this->admin,
+                'customer' => $this->customer,
             ],
         );
     }

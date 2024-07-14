@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\EmailOtpLogin\Http\Controllers\Controller;
-use Webkul\EmailOtpLogin\Http\Controllers\SessionController;
+use Webkul\EmailOtpLogin\Http\Controllers\Admin\Controller;
+use Webkul\EmailOtpLogin\Http\Controllers\Admin\SessionController;
 
 /**
  * Auth routes.
  */
 Route::group(['prefix' => config('app.admin_url')], function () {
-  
     /**
      * Redirect route.
      */     
@@ -35,5 +34,4 @@ Route::group(['prefix' => config('app.admin_url')], function () {
          */
         Route::delete('logout', 'destroy')->name('admin.session.destroy');
     });
-
 });

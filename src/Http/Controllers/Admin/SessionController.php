@@ -1,16 +1,15 @@
 <?php
 
-namespace Webkul\EmailOtpLogin\Http\Controllers;
+namespace Webkul\EmailOtpLogin\Http\Controllers\Admin;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Foundation\Bus\DispatchesJobs;
-use Webkul\User\Repositories\AdminRepository;
-use Webkul\EmailOtpLogin\Mail\OTPNotification;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Auth;
+use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Facades\Mail;
+use Webkul\User\Repositories\AdminRepository;
+use Webkul\EmailOtpLogin\Mail\Admin\OtpNotification;
 
 class SessionController extends BaseController
 {
@@ -44,7 +43,7 @@ class SessionController extends BaseController
 
         session()->put('url.intended', $intendedUrl);
 
-        return view('opt-login::users.sessions.create');
+        return view('otp-login::admin.users.sessions.create');
     }
 
     /**
@@ -63,20 +62,20 @@ class SessionController extends BaseController
         // Customer Not Found
         if(! $admin) {
             return new JsonResponse([
-                'message' => trans('Email is not registered'),
+                'message' => trans('otp-login::app.admin.session.not-found'),
             ], 500);
         }
 
         // OTP shared
-        if($this->resendOtp($admin)) {
+        if($this->sentOtpOnMail($admin)) {
             return new JsonResponse([
-                'message' => trans('OTP Sent on given Email'),
+                'message' => trans('otp-login::app.admin.session.otp-sent'),
             ], 200);
         }
 
         // Otp Not Send
         return new JsonResponse([
-            'message' => trans('Some Think Went Wrong to send OTP. Please Try Again'),
+            'message' => trans('otp-login::app.admin.session.try-again'),
         ], 500);
     }
 
@@ -85,16 +84,15 @@ class SessionController extends BaseController
      * 
      * @param mixed $admin
      */
-    public function resendOtp($admin) 
+    public function sentOtpOnMail($admin) 
     {
         try {
             $otp = rand(100000, 999999);
 
             $admin->otp = $otp;
-
             $admin->save();
 
-            Mail::queue( new OTPNotification($admin));
+            Mail::queue( new OtpNotification($admin));
 
             return true;
         } catch (\Exception $e) {
@@ -121,18 +119,13 @@ class SessionController extends BaseController
 
         if(! $admin) {
             return new JsonResponse([
-                'message' => trans('OTP is not valid'),
+                'message' => trans('otp-login::app.admin.session.otp-not-valid'),
             ], 500);
         }
 
-        request()->merge([
-            'email'    => request()->input('email'),
-            'password' => $admin->password,
-        ]);
-
         if (auth()->guard('admin')->loginUsingId($admin->id, false)) {
             return new JsonResponse([
-                'message'  => trans('Login Successfully'),
+                'message'  => trans('otp-login::app.admin.session.success'),
                 'redirect' => route('admin.dashboard.index'),
             ], 200);
         }
@@ -153,4 +146,3 @@ class SessionController extends BaseController
         return redirect()->route('admin.otp.session.create');
     }
 }
-

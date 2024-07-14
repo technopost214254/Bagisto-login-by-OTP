@@ -21,11 +21,9 @@ class EmailOtpLoginServiceProvider extends ServiceProvider
 
         Route::middleware('web')->group(__DIR__.'/../Routes/web.php');
 
-        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'opt-login');
+        $this->loadTranslationsFrom(__DIR__.'/../Resources/lang', 'otp-login');
         
-        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'opt-login');
-        
-        Blade::anonymousComponentPath(__DIR__.'/../Resources/views/components', 'opt-login');
+        $this->loadViewsFrom(__DIR__.'/../Resources/views', 'otp-login');
         
         $this->app->register(ModuleServiceProvider::class);
     }

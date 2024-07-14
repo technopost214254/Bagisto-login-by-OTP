@@ -1,6 +1,8 @@
 ## Installation without composer:
 
-- Unzip the respective extension zip and then merge "packages" and "storage" folders into project root directory.
+- This package is for customer and admin login via OTP sent to email. Create an `EmailOtpLogin` folder under the `package/Webkul` folder and copy all file under that folder. also this package made for bagisto v2.2.0
+
+Bagisto: v2.2.0
 
 - Goto config/app.php file and add following line under 'providers'
 
