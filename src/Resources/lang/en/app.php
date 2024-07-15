@@ -31,6 +31,17 @@ return [
                 'description' => 'Your One-Time Password (OTP) for logging into :brand_number admin panel is - :otp',
             ],
         ],
+
+        'configuration' => [
+            'email' => [
+                'otp' => [
+                    'title'          => 'OTP Login System',
+                    'info'           => 'OTP shared on email. When you enter into email and you got on email.',
+                    'admin-email'    => 'Enable on admin login Page',
+                    'customer-email' => 'Enable on customer login Page',
+                ],
+            ],
+        ],
     ],
 
     'customers' => [

@@ -16,16 +16,6 @@ Webkul\EmailOtpLogin\Providers\EmailOtpLoginServiceProvider::class,
 "Webkul\\EmailOtpLogin\\": "packages/Webkul/EmailOtpLogin/src"
 ```
 
-- Goto config/bagisto-vite.php file and add following line under 'psr-4'
-
-```
-'otp-login' => [
-    'hot_file'                 => 'admin-email-otp-vite.hot',
-    'build_directory'          => 'themes/admin-email-otp-login/default/build',
-    'package_assets_directory' => 'src/Resources/assets',
-],
-```
-
 - Run these commands below to complete the setup
 
 ```
