@@ -6,12 +6,12 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Mail;
+use Webkul\EmailOtpLogin\Http\Controllers\Controller;
 use Webkul\User\Repositories\AdminRepository;
 use Webkul\EmailOtpLogin\Mail\Admin\OtpNotification;
 
-class SessionController extends BaseController
+class SessionController extends Controller
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 

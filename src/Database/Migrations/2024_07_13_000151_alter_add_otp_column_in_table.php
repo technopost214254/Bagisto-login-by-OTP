@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::table('admins', function (Blueprint $table) {
             $table->integer('otp')->after('email');
         });
+
+        Schema::table('customers', function (Blueprint $table) {
+            $table->integer('otp')->after('email');
+        });
     }
 
     /**
@@ -22,6 +26,10 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('admins', function (Blueprint $table) {
+            $table->dropIfExists('otp');
+        });
+
+        Schema::table('customers', function (Blueprint $table) {
             $table->dropIfExists('otp');
         });
     }

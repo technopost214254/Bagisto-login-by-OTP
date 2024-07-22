@@ -24,6 +24,7 @@
     <v-customer-login />
 
     @pushOnce('scripts')
+    
     {!! Captcha::renderJS() !!}
         <script
             type="text/x-template"

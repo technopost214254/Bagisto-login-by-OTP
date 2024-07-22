@@ -6,7 +6,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Cookie;
-use Webkul\Shop\Http\Controllers\Controller;
+use Webkul\EmailOtpLogin\Http\Controllers\Controller;
 use Webkul\EmailOtpLogin\Mail\Customer\OtpNotification;
 use Webkul\Customer\Repositories\CustomerRepository;
 

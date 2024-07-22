@@ -214,5 +214,4 @@
             });
         </script>
     @endPushOnce
-
 </x-admin::layouts.anonymous>

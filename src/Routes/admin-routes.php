@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Webkul\EmailOtpLogin\Http\Controllers\Admin\Controller;
+use Webkul\EmailOtpLogin\Http\Controllers\Admin\AdminLoginController;
 use Webkul\EmailOtpLogin\Http\Controllers\Admin\SessionController;
 
 /**
@@ -11,7 +11,7 @@ Route::group(['prefix' => config('app.admin_url')], function () {
     /**
      * Redirect route.
      */     
-    Route::get('/', [Controller::class, 'index'])->name('admin.session.create');
+    Route::get('/', [AdminLoginController::class, 'index'])->name('admin.session.create');
 
     Route::controller(SessionController::class)->prefix('login')->group(function () {
         /**
